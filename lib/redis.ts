@@ -166,24 +166,26 @@ export async function createGame(hostNickname: string): Promise<GameSession> {
  */
 export async function getGame(code: string): Promise<GameSession | null> {
   try {
-    const data = await redis.get<string>(`game:${code}`);
+    const data = await redis.get(`game:${code}`);
     
     if (!data) {
       return null;
     }
     
-    // Ensure data is a string
-    if (typeof data !== 'string') {
-      console.error('Redis returned non-string data:', typeof data, data);
-      throw new Error(`Invalid data type from Redis: expected string, got ${typeof data}`);
+    // Upstash Redis automatically deserializes JSON, so data might already be an object
+    // If it's a string, parse it. If it's already an object, use it directly.
+    if (typeof data === 'string') {
+      return deserializeGameSession(data);
+    } else if (typeof data === 'object') {
+      // Data is already parsed by Upstash, convert it back to string for our deserializer
+      return deserializeGameSession(JSON.stringify(data));
+    } else {
+      console.error('Redis returned unexpected data type:', typeof data, data);
+      throw new Error(`Invalid data type from Redis: expected string or object, got ${typeof data}`);
     }
-    
-    return deserializeGameSession(data);
   } catch (error) {
     console.error('Error in getGame:', error);
     console.error('Game code:', code);
-    console.error('Redis URL configured:', !!process.env.UPSTASH_REDIS_REST_URL);
-    console.error('Redis token configured:', !!process.env.UPSTASH_REDIS_REST_TOKEN);
     throw error;
   }
 }
