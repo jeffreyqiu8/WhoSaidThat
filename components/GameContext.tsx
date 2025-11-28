@@ -232,7 +232,7 @@ export function GameProvider({ gameCode, currentPlayerId, children }: GameProvid
 
       // Listen for prompt started events
       channel.bind(GameEvent.PROMPT_STARTED, (data: PromptStartedPayload) => {
-        console.log('Prompt started:', data);
+        console.log('Prompt started - Round', data.roundNumber);
         refreshGameState();
       });
 
