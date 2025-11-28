@@ -252,7 +252,8 @@ export class GameStateManager {
     }
     
     // Create new round
-    const roundNumber = session.rounds.length;
+    // If we're in reveal phase, increment from current round, otherwise start at 0
+    const roundNumber = session.phase === 'reveal' ? session.currentRound + 1 : session.rounds.length;
     const newRound: Round = {
       roundNumber,
       prompt: selectedPrompt,
