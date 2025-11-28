@@ -48,8 +48,10 @@ export async function POST(
     let body;
     try {
       body = await request.json();
+      console.log('Parsed request body:', JSON.stringify(body));
     } catch (error) {
       console.error('Failed to parse request body:', error);
+      console.error('Request headers:', Object.fromEntries(request.headers.entries()));
       return NextResponse.json(
         { error: 'Invalid request body. Expected JSON.' },
         { status: 400 }
@@ -57,6 +59,7 @@ export async function POST(
     }
     
     const { nickname } = body;
+    console.log('Extracted nickname:', nickname);
 
     // Validate input
     if (!nickname || typeof nickname !== 'string') {
