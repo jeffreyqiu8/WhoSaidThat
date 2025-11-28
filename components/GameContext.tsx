@@ -92,10 +92,18 @@ export function GameProvider({ gameCode, currentPlayerId, children }: GameProvid
       // Note: API returns a simplified structure, not the full GameSession
       const rounds: any[] = [];
       
-      // If there's current round info, add it to rounds array
+      // If there's current round info, add it to rounds array at the correct index
       if (data.currentRoundInfo) {
         const roundInfo = data.currentRoundInfo;
-        rounds.push({
+        const currentRoundIndex = data.currentRound;
+        
+        // Fill array up to current round index if needed
+        while (rounds.length <= currentRoundIndex) {
+          rounds.push(null);
+        }
+        
+        // Set the current round at the correct index
+        rounds[currentRoundIndex] = {
           roundNumber: roundInfo.roundNumber,
           prompt: roundInfo.prompt,
           responses: new Map((roundInfo.responses || []).map((r: any) => [
@@ -117,7 +125,7 @@ export function GameProvider({ gameCode, currentPlayerId, children }: GameProvid
             })),
             penalties: new Map(Object.entries(roundInfo.results.penalties || {})),
           } : undefined,
-        });
+        };
       }
       
       const session: GameSession = {
