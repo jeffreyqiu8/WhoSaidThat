@@ -166,6 +166,16 @@ export const apiClient = {
     options: RequestInit = {},
     retryOptions?: RetryOptions
   ): Promise<T> {
+    let body: string;
+    try {
+      body = JSON.stringify(data);
+      console.log('Stringified request body:', body);
+    } catch (error) {
+      console.error('Failed to stringify request data:', error);
+      console.error('Data:', data);
+      throw new Error('Failed to serialize request data to JSON');
+    }
+    
     const response = await fetchWithRetry(
       url,
       {
@@ -174,7 +184,7 @@ export const apiClient = {
           'Content-Type': 'application/json',
           ...options.headers,
         },
-        body: JSON.stringify(data),
+        body,
         ...options,
       },
       retryOptions

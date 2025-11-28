@@ -44,6 +44,15 @@ export function sanitizeNickname(nickname: string): {
   isValid: boolean; 
   error?: string;
 } {
+  // Type guard: ensure nickname is a string
+  if (typeof nickname !== 'string') {
+    return {
+      sanitized: '',
+      isValid: false,
+      error: 'Nickname must be a string',
+    };
+  }
+  
   // First sanitize
   const sanitized = sanitizeText(nickname, 20);
   
