@@ -88,41 +88,24 @@ export function GameProvider({ gameCode, currentPlayerId, children }: GameProvid
 
       const data = await response.json();
       
-      // Convert serialized data back to GameSession with Maps and Dates
+      // Convert API response to GameSession format
+      // Note: API returns a simplified structure, not the full GameSession
       const session: GameSession = {
-        ...data,
-        players: new Map(Object.entries(data.players).map(([id, player]: [string, any]) => [
-          id,
+        code: data.code,
+        hostId: data.hostId,
+        phase: data.phase,
+        currentRound: data.currentRound,
+        // Convert players array to Map
+        players: new Map((data.players || []).map((player: any) => [
+          player.id,
           {
             ...player,
             joinedAt: new Date(player.joinedAt),
           },
         ])),
-        rounds: data.rounds.map((round: any) => ({
-          ...round,
-          responses: new Map(Object.entries(round.responses || {}).map(([id, response]: [string, any]) => [
-            id,
-            {
-              ...response,
-              submittedAt: new Date(response.submittedAt),
-            },
-          ])),
-          guesses: new Map(Object.entries(round.guesses || {}).map(([id, guess]: [string, any]) => [
-            id,
-            {
-              ...guess,
-              guesses: new Map(Object.entries(guess.guesses || {})),
-              submittedAt: new Date(guess.submittedAt),
-            },
-          ])),
-          results: round.results ? {
-            responses: round.results.responses.map((r: any) => ({
-              ...r,
-              guessedBy: new Map(Object.entries(r.guessedBy || {})),
-            })),
-            penalties: new Map(Object.entries(round.results.penalties || {})),
-          } : undefined,
-        })),
+        // API doesn't return full rounds array, create minimal structure
+        rounds: [],
+        usedPrompts: [],
         createdAt: new Date(data.createdAt),
         expiresAt: new Date(data.expiresAt),
       };
