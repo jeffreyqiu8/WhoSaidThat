@@ -1,0 +1,132 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/game/[code]",
+      "regex": "^/api/game/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/api/game/(?<nxtPcode>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/game/[code]/disconnect",
+      "regex": "^/api/game/([^/]+?)/disconnect(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/api/game/(?<nxtPcode>[^/]+?)/disconnect(?:/)?$"
+    },
+    {
+      "page": "/api/game/[code]/end",
+      "regex": "^/api/game/([^/]+?)/end(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/api/game/(?<nxtPcode>[^/]+?)/end(?:/)?$"
+    },
+    {
+      "page": "/api/game/[code]/guess",
+      "regex": "^/api/game/([^/]+?)/guess(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/api/game/(?<nxtPcode>[^/]+?)/guess(?:/)?$"
+    },
+    {
+      "page": "/api/game/[code]/join",
+      "regex": "^/api/game/([^/]+?)/join(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/api/game/(?<nxtPcode>[^/]+?)/join(?:/)?$"
+    },
+    {
+      "page": "/api/game/[code]/response",
+      "regex": "^/api/game/([^/]+?)/response(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/api/game/(?<nxtPcode>[^/]+?)/response(?:/)?$"
+    },
+    {
+      "page": "/api/game/[code]/start-round",
+      "regex": "^/api/game/([^/]+?)/start\\-round(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/api/game/(?<nxtPcode>[^/]+?)/start\\-round(?:/)?$"
+    },
+    {
+      "page": "/game/[code]",
+      "regex": "^/game/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/game/(?<nxtPcode>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/join/[code]",
+      "regex": "^/join/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcode": "nxtPcode"
+      },
+      "namedRegex": "^/join/(?<nxtPcode>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/host",
+      "regex": "^/host(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/host(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

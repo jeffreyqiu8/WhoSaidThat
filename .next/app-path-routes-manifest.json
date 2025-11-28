@@ -1,0 +1,16 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/game/[code]/disconnect/route": "/api/game/[code]/disconnect",
+  "/api/game/[code]/guess/route": "/api/game/[code]/guess",
+  "/api/game/[code]/end/route": "/api/game/[code]/end",
+  "/api/game/[code]/join/route": "/api/game/[code]/join",
+  "/api/game/[code]/response/route": "/api/game/[code]/response",
+  "/api/game/[code]/route": "/api/game/[code]",
+  "/api/game/[code]/start-round/route": "/api/game/[code]/start-round",
+  "/api/game/create/route": "/api/game/create",
+  "/api/health/route": "/api/health",
+  "/join/[code]/page": "/join/[code]",
+  "/host/page": "/host",
+  "/game/[code]/page": "/game/[code]",
+  "/page": "/"
+}
