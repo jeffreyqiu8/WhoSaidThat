@@ -46,7 +46,17 @@ export async function POST(
       );
     }
     
-    const body = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch (error) {
+      console.error('Failed to parse request body:', error);
+      return NextResponse.json(
+        { error: 'Invalid request body. Expected JSON.' },
+        { status: 400 }
+      );
+    }
+    
     const { hostId } = body;
 
     // Validate input

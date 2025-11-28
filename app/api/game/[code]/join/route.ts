@@ -45,7 +45,17 @@ export async function POST(
       );
     }
     
-    const body = await request.json();
+    let body;
+    try {
+      body = await request.json();
+    } catch (error) {
+      console.error('Failed to parse request body:', error);
+      return NextResponse.json(
+        { error: 'Invalid request body. Expected JSON.' },
+        { status: 400 }
+      );
+    }
+    
     const { nickname } = body;
 
     // Validate input
@@ -57,10 +67,10 @@ export async function POST(
     }
 
     // Sanitize and validate nickname
-    const { sanitized, isValid, error } = sanitizeNickname(nickname);
+    const { sanitized, isValid, error: validationError } = sanitizeNickname(nickname);
     if (!isValid) {
       return NextResponse.json(
-        { error: error || 'Invalid nickname' },
+        { error: validationError || 'Invalid nickname' },
         { status: 400 }
       );
     }
