@@ -52,7 +52,14 @@ export default function JoinPage() {
       router.push(`/game/${code}`);
     } catch (err) {
       console.error('Error joining game:', err);
+      
+      // Debug: log the error structure
+      if (err && typeof err === 'object') {
+        console.log('Error object:', JSON.stringify(err, null, 2));
+      }
+      
       const errorMessage = getErrorMessage(err);
+      console.log('Parsed error message:', errorMessage);
       setError(errorMessage);
       setIsLoading(false);
     }

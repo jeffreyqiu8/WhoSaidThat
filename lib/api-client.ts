@@ -186,14 +186,29 @@ export const apiClient = {
       
       try {
         error.data = await response.json();
-      } catch {
-        // Ignore JSON parse errors
+      } catch (parseError) {
+        console.error('Failed to parse error response as JSON:', parseError);
+        // Try to get text instead
+        try {
+          const text = await response.text();
+          console.error('Error response text:', text);
+          error.data = { error: text };
+        } catch {
+          // Ignore
+        }
       }
       
       throw error;
     }
     
-    return response.json();
+    try {
+      return await response.json();
+    } catch (parseError) {
+      console.error('Failed to parse success response as JSON:', parseError);
+      const text = await response.text();
+      console.error('Response text:', text);
+      throw new Error(`Invalid JSON response: ${text}`);
+    }
   },
   
   async get<T = any>(
@@ -216,13 +231,28 @@ export const apiClient = {
       
       try {
         error.data = await response.json();
-      } catch {
-        // Ignore JSON parse errors
+      } catch (parseError) {
+        console.error('Failed to parse error response as JSON:', parseError);
+        // Try to get text instead
+        try {
+          const text = await response.text();
+          console.error('Error response text:', text);
+          error.data = { error: text };
+        } catch {
+          // Ignore
+        }
       }
       
       throw error;
     }
     
-    return response.json();
+    try {
+      return await response.json();
+    } catch (parseError) {
+      console.error('Failed to parse success response as JSON:', parseError);
+      const text = await response.text();
+      console.error('Response text:', text);
+      throw new Error(`Invalid JSON response: ${text}`);
+    }
   },
 };

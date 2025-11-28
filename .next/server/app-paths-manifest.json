@@ -1,16 +1,16 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
   "/api/game/[code]/disconnect/route": "app/api/game/[code]/disconnect/route.js",
-  "/api/game/[code]/guess/route": "app/api/game/[code]/guess/route.js",
   "/api/game/[code]/end/route": "app/api/game/[code]/end/route.js",
+  "/api/game/[code]/guess/route": "app/api/game/[code]/guess/route.js",
   "/api/game/[code]/join/route": "app/api/game/[code]/join/route.js",
-  "/api/game/[code]/response/route": "app/api/game/[code]/response/route.js",
   "/api/game/[code]/route": "app/api/game/[code]/route.js",
+  "/api/game/[code]/response/route": "app/api/game/[code]/response/route.js",
   "/api/game/[code]/start-round/route": "app/api/game/[code]/start-round/route.js",
   "/api/game/create/route": "app/api/game/create/route.js",
   "/api/health/route": "app/api/health/route.js",
+  "/game/[code]/page": "app/game/[code]/page.js",
   "/join/[code]/page": "app/join/[code]/page.js",
   "/host/page": "app/host/page.js",
-  "/game/[code]/page": "app/game/[code]/page.js",
   "/page": "app/page.js"
 }
