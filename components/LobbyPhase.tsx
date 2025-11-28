@@ -33,15 +33,12 @@ export default function LobbyPhase({ gameCode, players, hostId, currentPlayerId 
     setError(null);
 
     try {
-      // For now, we'll use a default prompt
-      // In task 14, this will be replaced with random prompt selection
-      const defaultPrompt = "What's the most embarrassing thing that happened to you this week?";
-      
+      // Let the server select a random prompt
       await apiClient.post(
         `/api/game/${gameCode}/start-round`,
         {
           hostId: currentPlayerId,
-          prompt: defaultPrompt,
+          // No prompt provided - server will select random unused prompt
         },
         {},
         { maxRetries: 2, retryDelay: 1000 }
