@@ -90,6 +90,36 @@ export function GameProvider({ gameCode, currentPlayerId, children }: GameProvid
       
       // Convert API response to GameSession format
       // Note: API returns a simplified structure, not the full GameSession
+      const rounds: any[] = [];
+      
+      // If there's current round info, add it to rounds array
+      if (data.currentRoundInfo) {
+        const roundInfo = data.currentRoundInfo;
+        rounds.push({
+          roundNumber: roundInfo.roundNumber,
+          prompt: roundInfo.prompt,
+          responses: new Map((roundInfo.responses || []).map((r: any) => [
+            r.id as string,
+            {
+              id: r.id,
+              text: r.text,
+              playerId: r.playerId || '',
+              submittedAt: new Date(),
+            },
+          ])),
+          guesses: new Map(),
+          results: roundInfo.results ? {
+            responses: (roundInfo.results.responses || []).map((r: any) => ({
+              responseId: r.responseId,
+              text: r.text,
+              actualAuthor: r.actualAuthor,
+              guessedBy: new Map(Object.entries(r.guessedBy || {})),
+            })),
+            penalties: new Map(Object.entries(roundInfo.results.penalties || {})),
+          } : undefined,
+        });
+      }
+      
       const session: GameSession = {
         code: data.code,
         hostId: data.hostId,
@@ -103,8 +133,7 @@ export function GameProvider({ gameCode, currentPlayerId, children }: GameProvid
             joinedAt: new Date(player.joinedAt),
           },
         ])),
-        // API doesn't return full rounds array, create minimal structure
-        rounds: [],
+        rounds,
         usedPrompts: [],
         createdAt: new Date(data.createdAt),
         expiresAt: new Date(data.expiresAt),
