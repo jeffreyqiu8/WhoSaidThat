@@ -19,7 +19,7 @@ export default function HostPage() {
     setLoading(true);
 
     try {
-      const data = await apiClient.post<{ code: string }>(
+      const data = await apiClient.post<{ code: string; hostId: string; host: { id: string } }>(
         '/api/game/create',
         { hostNickname: nickname },
         {},
@@ -27,6 +27,9 @@ export default function HostPage() {
       );
 
       setGameCode(data.code);
+      
+      // Store player ID in localStorage so the host is recognized in the game
+      localStorage.setItem(`player_${data.code}`, data.hostId);
     } catch (err) {
       const errorMessage = getErrorMessage(err);
       setError(errorMessage);

@@ -23,7 +23,7 @@ export default function LobbyPhase({ gameCode, players, hostId, currentPlayerId 
 
   const isHost = currentPlayerId === hostId;
   const playerCount = players.size;
-  const minPlayers = 4;
+  const minPlayers = 1; // Changed from 4 to 1 for testing - change back to 4 for production
   const canStartGame = isHost && playerCount >= minPlayers;
 
   const handleStartGame = async () => {
