@@ -1,39 +1,51 @@
-# See https:s.
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-v.d.ts
-next-enuildinfosbscript
-*.ttype
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
 
-# rcell
-.ve
+# testing
+/coverage
 
-# verce
-.envnv*.localnv files
-.e
+# next.js
+/.next/
+/out/
 
-# local eog*.lorg*
-yarn-errrn-debug.log.log*
-ya-debu# debug
-npm
-
-*.pem_Store
-.DS
-
-# misc
-ion
+# production
 /build
 
-# product
-/out/xt//.ne next.js
-age
+# misc
+.DS_Store
+*.pem
 
-#/coveresting
-# tte.gz
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
-nstall-stajs
-.yarn/i.pnp
-.pnp.les
-/_modu
-/nodeiesncende
-# dep
-node_modules
+# local env files
+.env*.local
+.env.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+
+# Deployment artifacts (keep documentation)
+.vercel/
+.env.production
+
+# Test artifacts
+vitest.config.ts.timestamp-*

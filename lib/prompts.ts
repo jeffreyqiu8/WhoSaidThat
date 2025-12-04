@@ -7,7 +7,6 @@
  * Each prompt is a question or statement that players respond to
  */
 export const PROMPTS: string[] = [
-  "What's your most embarrassing moment from high school?",
   "If you could have dinner with any historical figure, who would it be?",
   "What's the weirdest food combination you secretly enjoy?",
   "What's your go-to karaoke song?",
@@ -67,6 +66,9 @@ export const PROMPTS: string[] = [
   "What's your biggest kitchen disaster?",
   "If you could erase one memory, what would it be?",
   "What's the most awkward encounter you've had with a celebrity or crush?",
+
+
+  
 ];
 
 /**
