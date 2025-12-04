@@ -68,13 +68,27 @@ This project is configured for deployment on Vercel. See [DEPLOYMENT.md](./DEPLO
 - Configuring Pusher Channels
 - Environment variable configuration
 - Deployment verification steps
-- Troubleshooting guide
 
 **Quick Deploy:**
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/who-said-that-game)
 
 After deployment, configure the required environment variables in your Vercel project settings.
+
+### Troubleshooting
+
+If your deployment stops working, see [TROUBLESHOOTING.md](./TROUBLESHOOTING.md) for common issues and solutions.
+
+**Quick diagnostic:**
+```bash
+node scripts/diagnose-deployment.js https://your-app.vercel.app
+```
+
+**Most common issues:**
+- Pusher free tier limits (100 concurrent connections)
+- Upstash Redis free tier limits (10K commands/day)
+- Missing environment variables
+- Service outages
 
 ## Project Structure
 
